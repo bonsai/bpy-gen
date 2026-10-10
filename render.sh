@@ -31,4 +31,6 @@ OUTPUT_FILE="${WIN_RENDER_DIR}\\${OUTPUT_NAME}"
 
 "$BLENDER" --background --python "$WIN_SCRIPT" -- --output "$OUTPUT_FILE"
 
+python3 "$SKILL_DIR/tools/log_render.py" "$SCRIPT_NAME" "$RENDER_DIR/$OUTPUT_NAME" "ok"
+
 echo "Saved: $RENDER_DIR/$OUTPUT_NAME"
