@@ -4,20 +4,34 @@ Blender Python (bpy) scripts for procedural character generation and art experim
 
 ## Tools
 
-- `tools/doraemon_bpy.py` — Generate a simplified Doraemon in Blender
+- `tools/doraemon_bpy.py` — Generate a simplified Doraemon in Blender with auto-camera-fit
+- `render.sh` — Headless render wrapper (Windows Blender → WSL output)
 
-## Usage
+## Quick Render
 
-Open Blender → Scripting editor → Open `doraemon_bpy.py` → Run Script
+```bash
+./render.sh
+```
+
+Output: `~/data-bpy-gen/renders/doraemon.png`
+
+## Manual
+
+Open Blender → Scripting editor → Open `tools/doraemon_bpy.py` → Run Script
 
 Or CLI:
 
 ```bash
-blender --python tools/doraemon_bpy.py
+blender --background --python tools/doraemon_bpy.py -- --output ~/data-bpy-gen/renders/doraemon.png
 ```
+
+## Output locations
+
+- Renders: `~/data-bpy-gen/renders/`
+- Scripts: `~/.skills/bpy-gen/tools/`
 
 ## Future
 
-- LLM-driven character description → bpy mesh generation via NVIDIA/Sakura API
+- LLM-driven character description → bpy mesh generation via Sakura API
 - Rendering pipeline for training data generation
 - Drawing improvement learning experiments on Colab GPU
