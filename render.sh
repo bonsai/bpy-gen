@@ -50,19 +50,12 @@ with open('$SIDECAR', 'w', encoding='utf-8') as f:
 
 python3 "$SKILL_DIR/tools/log_render.py" "$SCRIPT_NAME" "$RENDER_DIR/$OUTPUT_NAME" "ok"
 
-# MEGA sync (auto if rclone configured)
-if command -v rclone >/dev/null 2>&1; then
-  if rclone listremotes 2>/dev/null | grep -q "^mega:"; then
-    rclone copy "$RENDER_DIR/$OUTPUT_NAME" "mega:bpy-gen/outputs/"
-    rclone copy "$SIDECAR" "mega:bpy-gen/outputs/"
-    echo "Synced to MEGA: bpy-gen/outputs/$OUTPUT_NAME"
-  else
-    echo "WARN: rclone 'mega:' remote not configured. Run: rclone config"
-    echo "      Then re-run this script for automatic MEGA sync."
-  fi
-else
-  echo "WARN: rclone not installed. Skipping MEGA sync."
-fi
+# MEGA sync via MEGAsync local folder
+MEGA_DIR="/mnt/c/Users/dance/Documents/MEGA/bpy-gen/outputs"
+mkdir -p "$MEGA_DIR"
+cp "$RENDER_DIR/$OUTPUT_NAME" "$MEGA_DIR/"
+cp "$SIDECAR" "$MEGA_DIR/"
+echo "Synced to MEGA (via MEGAsync): bpy-gen/outputs/$OUTPUT_NAME"
 
 echo "Saved: $RENDER_DIR/$OUTPUT_NAME"
 echo "Sidecar: $SIDECAR"

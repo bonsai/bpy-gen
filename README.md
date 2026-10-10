@@ -17,22 +17,16 @@ Blender Python (bpy) scripts for procedural character generation and art experim
 ./render.sh bear         # ローポリ木彫りクマ
 ```
 
-Output: `~/bpy-gen/outputs/YYYYMMDD_HHMMSS_<model>.png`
+Output:
+- `~/bpy-gen/outputs/YYYYMMDD_HHMMSS_<model>.png`
+- `~/bpy-gen/outputs/YYYYMMDD_HHMMSS_<model>.json` (sidecar)
+- `MEGA/bpy-gen/outputs/` (auto-sync via MEGAsync)
 
 ## Output locations
 
-- Renders: `~/bpy-gen/outputs/`
-- MEGA: `MEGA/bpy-gen/outputs/`
+- Local: `~/bpy-gen/outputs/`
+- Cloud: `MEGA/bpy-gen/outputs/` (synced by MEGAsync)
 - Scripts: `~/.skills/bpy-gen/tools/`
-
-## MEGA setup
-
-```bash
-rclone config
-# Create new remote → mega → enter username + password
-```
-
-After setup, `render.sh` auto-syncs renders to MEGA.
 
 ## Future
 
