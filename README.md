@@ -10,10 +10,12 @@ Blender Python (bpy) scripts for procedural character generation and art experim
 ## Quick Render
 
 ```bash
-./render.sh
+./render.sh doraemon     # ドラえもん
+./render.sh pagoda       # 五重塔
+./render.sh bear         # ローポリ木彫りクマ
 ```
 
-Output: `~/data-bpy-gen/renders/doraemon.png`
+Output: `~/bpy-gen/outputs/YYYYMMDD_HHMMSS_<model>.png`
 
 ## Manual
 
