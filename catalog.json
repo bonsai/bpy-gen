@@ -27,5 +27,15 @@
       "style": "low-poly wood carving",
       "tags": ["animal", "craft", "lowpoly"]
     }
+    ,
+    {
+      "id": 4,
+      "name": "salmon_bear",
+      "label": "鮭をとる熊",
+      "script": "tools/salmon_bear_bpy.py",
+      "count": 4,
+      "style": "dynamic scene: bear catching leaping salmon",
+      "tags": ["animal", "action", "nature"]
+    }
   ]
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Render any bpy-gen model via Windows Blender.
 # Usage: ./render.sh <model_name>
-#   model_name: doraemon | pagoda | bear
+#   model_name: doraemon | pagoda | bear | salmon
 set -euo pipefail
 
 SCRIPT_NAME="${1:-doraemon}"
@@ -14,9 +14,10 @@ case "$SCRIPT_NAME" in
   doraemon|ドラえもん) SCRIPT="tools/doraemon_bpy.py" ;;
   pagoda|五重塔)        SCRIPT="tools/pagoda_bpy.py" ;;
   bear|クマ|木彫り)     SCRIPT="tools/bear_bpy.py" ;;
+  salmon|鮭|salmon_bear) SCRIPT="tools/salmon_bear_bpy.py" ;;
   *)
     echo "Unknown model: $SCRIPT_NAME"
-    echo "Available: doraemon, pagoda, bear"
+    echo "Available: doraemon, pagoda, bear, salmon"
     exit 1
     ;;
 esac
