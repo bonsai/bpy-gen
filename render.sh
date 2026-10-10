@@ -31,6 +31,26 @@ OUTPUT_FILE="${WIN_RENDER_DIR}\\${OUTPUT_NAME}"
 
 "$BLENDER" --background --python "$WIN_SCRIPT" -- --output "$OUTPUT_FILE"
 
+# Sidecar metadata
+SIDECAR="$RENDER_DIR/${TIMESTAMP}_${SCRIPT_NAME}.json"
+python3 -c "
+import json, datetime, os, sys
+meta = {
+    'model': '$SCRIPT_NAME',
+    'timestamp': '$TIMESTAMP',
+    'output': '$OUTPUT_NAME',
+    'blender': '5.0',
+    'engine': 'BLENDER_WORKBENCH',
+    'status': 'ok',
+    'created': datetime.datetime.now(datetime.timezone.utc).isoformat()
+}
+with open('$SIDECAR', 'w', encoding='utf-8') as f:
+    json.dump(meta, f, ensure_ascii=False, indent=2)
+"
+
 python3 "$SKILL_DIR/tools/log_render.py" "$SCRIPT_NAME" "$RENDER_DIR/$OUTPUT_NAME" "ok"
 
 echo "Saved: $RENDER_DIR/$OUTPUT_NAME"
+echo "Sidecar: $SIDECAR"
+echo "---"
+echo "Next: copy outputs to MEGA/bpy-gen/outputs/  (manual or rclone)"
