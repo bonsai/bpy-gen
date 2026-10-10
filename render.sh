@@ -51,6 +51,18 @@ with open('$SIDECAR', 'w', encoding='utf-8') as f:
 
 python3 "$SKILL_DIR/tools/log_render.py" "$SCRIPT_NAME" "$RENDER_DIR/$OUTPUT_NAME" "ok"
 
+# DB lineage log
+GEN_ID=$(python3 -c "
+import sys
+sys.path.insert(0, '$SKILL_DIR')
+from tools.db import list_generations
+gens = list_generations('$SCRIPT_NAME')
+print(gens[-1]['id'] if gens else '')
+" 2>/dev/null || echo "")
+if [ -n "$GEN_ID" ]; then
+    python3 "$SKILL_DIR/tools/db.py" log_render "$GEN_ID" "$RENDER_DIR/$OUTPUT_NAME" "WORKBENCH"
+fi
+
 # MEGA sync via MEGAsync local folder
 MEGA_DIR="/mnt/c/Users/dance/Documents/MEGA/bpy-gen/outputs"
 mkdir -p "$MEGA_DIR"
