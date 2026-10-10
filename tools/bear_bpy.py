@@ -4,6 +4,8 @@ Blender Python — low-poly wooden carved bear (木彫りクマ).
 import bpy
 import math
 import mathutils
+import sys
+import argparse
 
 
 def clear_scene():
@@ -142,5 +144,9 @@ def bear():
 
 
 if __name__ == "__main__":
+    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", default="/tmp/bear.png")
+    args = parser.parse_args(argv)
     bear()
-    render("/tmp/bear.png")
+    render(args.output)

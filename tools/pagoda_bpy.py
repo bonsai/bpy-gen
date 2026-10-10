@@ -4,6 +4,8 @@ Blender Python — procedural five-story pagoda (五重塔).
 import bpy
 import math
 import mathutils
+import sys
+import argparse
 
 
 def clear_scene():
@@ -175,5 +177,9 @@ def pagoda(stories: int = 5):
 
 
 if __name__ == "__main__":
+    argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", default="/tmp/pagoda.png")
+    args = parser.parse_args(argv)
     pagoda(5)
-    render("/tmp/pagoda.png")
+    render(args.output)
